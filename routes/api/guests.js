@@ -10,6 +10,7 @@ router.get("/", async (req, res) => {
 router.get("/:guestID", async (req, res) => {
   const id = req.params.guestID;
   const guest = await Guest.findById(id).lean();
+  res.cookie("newUser", true);
   res.status(200).json(guest);
 });
 
