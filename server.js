@@ -1,6 +1,6 @@
 const express = require("express");
 const cors = require("cors");
-// const cookieParser = require("cookie-parser");
+const { requireAuth } = require("./middleware/authMiddleware");
 const connectDB = require("./config/db");
 require("dotenv").config();
 const port = process.env.PORT || 3000;
@@ -11,9 +11,13 @@ app.use(express.json({ extended: false }));
 // app.use(cookieParser());
 app.use(cors());
 
-app.use("/api/guests", require("./routes/api/guests"));
+app.use("/api/guests", requireAuth, require("./routes/api/guests"));
+app.use("/api/auth", require("./routes/api/auth"));
 
-app.get("/", (req, res) => {
+app.get("/", requireAuth, (req, res) => {
+  res.json({ msg: "hey there !" });
+});
+app.post("/", requireAuth, (req, res) => {
   res.json({ msg: "hey there !" });
 });
 
