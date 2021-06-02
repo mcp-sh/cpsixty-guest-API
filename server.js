@@ -8,16 +8,12 @@ const port = process.env.PORT || 3000;
 const app = express();
 connectDB();
 app.use(express.json({ extended: false }));
-// app.use(cookieParser());
 app.use(cors());
 
 app.use("/api/guests", requireAuth, require("./routes/api/guests"));
 app.use("/api/auth", require("./routes/api/auth"));
 
 app.get("/", requireAuth, (req, res) => {
-  res.json({ msg: "hey there !" });
-});
-app.post("/", requireAuth, (req, res) => {
   res.json({ msg: "hey there !" });
 });
 

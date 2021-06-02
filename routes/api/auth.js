@@ -3,7 +3,7 @@ require("dotenv").config();
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 
-router.post("/", async (req, res) => {
+router.post("/", (req, res) => {
   const { pw } = req.body;
   if (pw === process.env.TOKEN_AUTH) {
     const token = jwt.sign({ auth: true }, process.env.JWT_SECRET);
