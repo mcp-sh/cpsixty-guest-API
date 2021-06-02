@@ -5,6 +5,7 @@ const guestSchema = new Schema(
   {
     name: { type: String },
     email: { type: String, unique: true, lowercase: true },
+    langDe: { type: Boolean, default: true },
     travelInfo: {
       arrDate: { type: Date, default: Date.now() },
       depDate: { type: Date, default: Date.now() },
