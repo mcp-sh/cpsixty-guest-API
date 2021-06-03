@@ -9,7 +9,6 @@ const requireAuth = (req, res, next) => {
         console.log(err.message);
         res.status(403).json({ msg: "No Access - Wrong Token" });
       } else {
-        // console.log(decodedToken);
         next();
       }
     });

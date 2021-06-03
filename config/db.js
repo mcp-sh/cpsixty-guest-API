@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 require("dotenv").config();
 
 const dbstring = `mongodb+srv://${process.env.ATLAS_USER}:${process.env.ATLAS_PWD}@cluster0.clio2.mongodb.net/cpsixty?retryWrites=true&w=majority`;
-// console.log(dbstring)
 const connectDB = async () => {
   try {
     await mongoose.connect(dbstring, {
