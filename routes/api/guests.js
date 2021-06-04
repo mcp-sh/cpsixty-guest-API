@@ -3,7 +3,7 @@ const router = express.Router();
 const Guest = require("../../models/Guests");
 
 router.get("/", async (req, res) => {
-  const allGuests = await Guest.find().lean();
+  const allGuests = await Guest.find().sort("-updatedAt").lean();
   res.status(200).json(allGuests);
 });
 
