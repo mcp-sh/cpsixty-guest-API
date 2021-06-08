@@ -2,6 +2,11 @@ const express = require("express");
 const router = express.Router();
 const Guest = require("../../models/Guests");
 
+// router.get("/", async (req, res) => {
+//   const allGuests = await Guest.find().sort("-updatedAt").lean();
+//   res.status(200).json(allGuests);
+// });
+
 router.get("/", async (req, res) => {
   const allGuests = await Guest.find().sort("-updatedAt").lean();
   res.status(200).json(allGuests);
@@ -14,7 +19,14 @@ router.get("/:guestID", async (req, res) => {
 });
 
 router.patch("/:guestID", async (req, res) => {
-  const { arrDate, depDate, numPax, numRooms, travelType } = req.body;
+  const {
+    arrDate,
+    depDate,
+    numPax,
+    numRooms,
+    travelType,
+    cancelled,
+  } = req.body;
   const updInfo = {
     arrDate: arrDate,
     depDate: depDate,
@@ -26,6 +38,7 @@ router.patch("/:guestID", async (req, res) => {
 
   const guest = await Guest.findById(id);
   guest.travelInfo = { ...updInfo };
+  guest.cancelled = cancelled;
 
   try {
     updateGuest = await guest.save();

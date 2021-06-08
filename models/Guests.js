@@ -7,6 +7,7 @@ const guestSchema = new Schema(
     email: { type: String, unique: true, lowercase: true },
     langDe: { type: Boolean, default: true },
     comment: { type: String, default: "" },
+    cancelled: { type: Boolean, default: false },
     travelInfo: {
       arrDate: { type: Date, default: Date.now() },
       depDate: { type: Date, default: Date.now() },
