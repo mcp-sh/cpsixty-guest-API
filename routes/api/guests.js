@@ -8,7 +8,9 @@ const Guest = require("../../models/Guests");
 // });
 
 router.get("/", async (req, res) => {
-  const allGuests = await Guest.find().sort("-updatedAt").lean();
+  const allGuests = await Guest.find()
+    .sort({ cancelled: 1, updatedAt: -1 })
+    .lean();
   res.status(200).json(allGuests);
 });
 
